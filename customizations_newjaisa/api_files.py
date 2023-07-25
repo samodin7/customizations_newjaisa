@@ -138,3 +138,22 @@ def warrenty_on_item(serial_no):
     if serial_warenty_date:
         if current_date >= serial_warenty_date:
             return "is Under Warrenty"
+
+
+@frappe.whitelist()
+def get_serial_details(serial_no):
+     source_ware = frappe.get_value('Serial No', {'name': serial_no}, 'warehouse')
+     brand = frappe.get_value('Serial No', {'name': serial_no}, 'brand')
+     item_code = frappe.get_value('Serial No', {'name': serial_no}, 'item_code')
+     item_group = frappe.get_value('Item', {'name': item_code}, 'item_group')
+     return source_ware, brand, item_code, item_group
+
+@frappe.whitelist()
+def get_t_ava(warehouse):
+    try:
+        # Fetch available capacity
+        available_capacity = frappe.get_value("Warehouse", warehouse, "available_capacity")
+        return available_capacity
+    except frappe.DoesNotExistError:
+        # Handle the case when the warehouse is not found
+        return None
