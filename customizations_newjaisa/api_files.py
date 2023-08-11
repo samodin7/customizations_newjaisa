@@ -139,8 +139,6 @@ def get_item_groups(parent_group):
 #        if current_date >= serial_warenty_date:
 #            return "is Under Warrenty"
 @frappe.whitelist()
-# <<<<<<< HEAD
-# =======
 def warrenty_on_item(serial_no):
     current_date = date.today()
     serial_warenty_date = frappe.get_value("Serial No",serial_no, "warranty_date")
@@ -150,7 +148,6 @@ def warrenty_on_item(serial_no):
 
 
 @frappe.whitelist()
-# >>>>>>> 9399b41544db1a69b75e0ae3e25cf4bfe3e33db7
 def get_serial_details(serial_no):
      source_ware = frappe.get_value('Serial No', {'name': serial_no}, 'warehouse')
      brand = frappe.get_value('Serial No', {'name': serial_no}, 'brand')
