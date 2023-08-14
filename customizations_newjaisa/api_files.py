@@ -163,9 +163,4 @@ def get_t_ava(warehouse):
         return available_capacity
     except frappe.DoesNotExistError:
 	    return None
-	    
-# <<<<<<< HEAD
-#         return None
-# =======
-#         return None
-# >>>>>>> 9399b41544db1a69b75e0ae3e25cf4bfe3e33db7
+
