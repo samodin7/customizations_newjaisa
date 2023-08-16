@@ -163,4 +163,21 @@ def get_t_ava(warehouse):
         return available_capacity
     except frappe.DoesNotExistError:
 	    return None
+    
+@frappe.whitelist()
+def get_serial_info(serial_no):
+    # Convert the newline-separated serial_numbers string into a list
+    serial_numbers_list = serial_no.strip().split('\n')
+
+    # Query the database to fetch the necessary information for each serial number
+    result = []
+    ser_no = serial_numbers_list[0]
+    result = frappe.db.get_value(
+		'Serial No',
+		ser_no,
+		['warehouse', 'item_group', 'brand'],
+		as_dict=True
+	)
+
+    return result
 
